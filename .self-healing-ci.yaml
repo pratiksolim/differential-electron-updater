@@ -1,0 +1,10 @@
+version: 1
+retry:
+  max_attempts: 2
+  cooldown_seconds: 10
+
+retryable_patterns:
+  - name: "simulated network failure"
+    pattern: "SIMULATED_NETWORK_FAILURE"
+    is_regex: false
+    strategy: "rerun-failed-jobs"

@@ -1,0 +1,12 @@
+name: Test Failure
+on: [push]
+
+jobs:
+  flaky-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simulate network failure
+        run: |
+          echo "Downloading dependencies..."
+          echo "SIMULATED_NETWORK_FAILURE: connection timed out"
+          exit 1
