@@ -1,9 +1,30 @@
-name: Test Failure
-on: [push]
+name: Build Electron App
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform'
+        required: true
+        default: 'osx_arm64'
+        type: choice
+        options:
+          - osx_arm64
+          - osx_x64
+          - windows_x64
+          - linux_x64
 
 jobs:
+  build-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: |
+          echo "Building for ${{ github.event.inputs.platform }}"
+
   flaky-job:
     runs-on: ubuntu-latest
+    needs: build-job
     steps:
       - name: Simulate network failure
         run: |
