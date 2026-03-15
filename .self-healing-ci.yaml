@@ -1,6 +1,6 @@
 version: 1
 retry:
-  max_attempts: 1
+  max_attempts: 2
   cooldown_seconds: 10
 
 retryable_patterns:
